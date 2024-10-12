@@ -26,21 +26,5 @@
       "slug": "anmoln3168"
     },
     "query": "fragment EarnedAward on EarnedAwardBase {\n  __typename\n  id\n  award {\n    __typename\n    id\n    title\n    type\n    icon\n    content {\n      __typename\n      webUrl\n      description\n    }\n  }\n}\n\nfragment EarnedAwardSelf on EarnedAwardSelf {\n  __typename\n  id\n  award {\n    __typename\n    id\n    title\n    type\n    icon\n    content {\n      __typename\n      webUrl\n      description\n    }\n  }\n  earnedAt\n  earnedPointsSum\n}\n\nfragment StatsBadgeCount on TrailheadProfileStats {\n  __typename\n  earnedBadgesCount\n  superbadgeCount\n}\n\nfragment ProfileBadges on PublicProfile {\n  __typename\n  trailheadStats {\n    ... on TrailheadProfileStats {\n      ...StatsBadgeCount\n    }\n  }\n  earnedAwards(first: $count, after: $after, awardType: $filter) {\n    edges {\n      node {\n        ... on EarnedAwardBase {\n          ...EarnedAward\n        }\n        ... on EarnedAwardSelf {\n          ...EarnedAwardSelf\n        }\n      }\n    }\n    pageInfo {\n      ...PageInfoBidirectional\n    }\n  }\n}\n\nfragment PageInfoBidirectional on PageInfo {\n  __typename\n  endCursor\n  hasNextPage\n  startCursor\n  hasPreviousPage\n}\n\nquery GetTrailheadBadges($slug: String, $hasSlug: Boolean!, $count: Int = 8, $after: String = null, $filter: AwardTypeFilter = null) {\n  profile(slug: $slug) @include(if: $hasSlug) {\n    __typename\n    ... on PublicProfile {\n      ...ProfileBadges\n    }\n  }\n}\n"
-  },
-  "IamAWordsList": [
-    "Salesforce Developer",
-    "Freelancer",
-    "Systems Integrator",
-    "Server Administrator",
-    "Technophile",
-    "Full Stack Developer"
-  ],
-  "socialProfileLinks": {
-    "github": "https://github.com/nagarajanmolrao",
-    "linkedin": "http://www.linkedin.com/in/nanmolrao",
-    "telegram": "https://t.me/nanmolrao",
-    "instagram": "https://www.instagram.com/nanmol2108/"
-  },
-  "aboutParagragh": "Passionate web and software developer, skilled in Python, Java, Flask Framework, NoSQL, MySQL, HTML, CSS. Creates software solutions with creative but functional designs. Designed and deployed 7+ sofware projects, including a personal portfolio site. With enthusiasm and curiosity, I practise Systems Integration in my down time. In addition to what my work demands, I also put up and manage various servers in Linux as a hobby.",
-  "educationalInformation": {}
+  }
 }
