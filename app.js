@@ -1,10 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
+const cors = require('cors');
 
 const app = express();
 const SERVER_PORT = dotenv.parsed?.SERVER_PORT ?? 3456;
 const apiRoutes = require("./src/api_routes");
 
+app.use(cors({ origin: '*' }));
 app.use("/portfolio-api", apiRoutes);
 
 app.listen(SERVER_PORT, '0.0.0.0', (error) => {
