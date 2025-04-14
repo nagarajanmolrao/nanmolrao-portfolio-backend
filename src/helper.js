@@ -21,9 +21,21 @@ function getSfCertications() {
       resVar.forEach((eachCert) => {
         delete eachCert["cta"];
         delete eachCert["product"];
-        eachCert["status"] = eachCert["status"]["title"];
       });
-      return resVar;
+      // Cleansing and structuring
+      let finalData = [];
+      let actualData = [...resVar].reverse();
+      actualData.forEach((ele) => {
+        finalData.push({
+          id: Math.floor(100000 + Math.random() * 900000),
+          date: new Date(ele.dateCompleted).toDateString().substring(4,).trim(),
+          title: ele.title,
+          description: ele.publicDescription,
+          logoUrl: ele.logoUrl,
+          status: ele.status
+        });
+      })
+      return finalData;
     })
     .catch((err) => {
       console.log(JSON.stringify(err));
